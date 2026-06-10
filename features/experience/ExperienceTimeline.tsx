@@ -1,6 +1,7 @@
 import { experiences } from "@/data/experience";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { DateRange } from "./DateRange";
 
 export function ExperienceTimeline() {
   return (
@@ -25,9 +26,7 @@ export function ExperienceTimeline() {
               <FadeIn key={exp.id} delay={index * 0.1}>
                 <article className="relative md:grid md:grid-cols-[7.5rem_1fr] md:gap-8">
                   <div className="mb-2 md:mb-0 md:text-right">
-                    <time className="text-sm font-medium text-accent">
-                      {exp.dateRange}
-                    </time>
+                    <DateRange range={exp.dateRange} />
                     {exp.location && (
                       <p className="mt-1 text-xs text-muted">{exp.location}</p>
                     )}
