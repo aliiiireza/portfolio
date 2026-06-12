@@ -58,7 +58,7 @@ export function Hero() {
             <LinkedInIcon size={18} />
             LinkedIn
           </Button>
-          <Button href="#projects" variant="outline" size="lg">
+          <Button href="/#projects" variant="outline" size="lg">
             <FolderOpen size={18} />
             Projects
           </Button>
@@ -71,7 +71,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.8 }}
         >
           <a
-            href="#about"
+            href="/#about"
             className="inline-flex flex-col items-center gap-2 text-muted transition-colors hover:text-accent"
             aria-label="Scroll to about section"
           >

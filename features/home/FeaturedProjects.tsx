@@ -24,7 +24,7 @@ export function FeaturedProjects() {
         <FadeIn delay={0.2}>
           <div className="mt-12 text-center">
             <a
-              href="#projects"
+              href="/#projects"
               className="text-sm font-medium text-accent transition-colors hover:text-accent/80"
             >
               View all projects &darr;
