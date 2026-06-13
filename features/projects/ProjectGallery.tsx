@@ -26,9 +26,11 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
 
   if (images.length === 0) return null;
 
+  const currentImage = images[current];
+
   return (
     <div className="space-y-4">
-      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-surface">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-surface-elevated">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -38,13 +40,22 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
             transition={{ duration: 0.3 }}
             className="absolute inset-0"
           >
-            <ImageWithSkeleton
-              src={images[current]}
-              alt={`${title} — screenshot ${current + 1}`}
-              fill
-              priority={current === 0}
-              sizes="(max-width: 1024px) 100vw, 896px"
-            />
+            <a
+              href={currentImage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block h-full w-full cursor-zoom-in"
+              aria-label={`Open ${title} screenshot ${current + 1} in new tab`}
+            >
+              <ImageWithSkeleton
+                src={currentImage}
+                alt={`${title} — screenshot ${current + 1}`}
+                fill
+                objectFit="contain"
+                priority={current === 0}
+                sizes="(max-width: 1024px) 100vw, 896px"
+              />
+            </a>
           </motion.div>
         </AnimatePresence>
 
@@ -52,14 +63,14 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
           <>
             <button
               onClick={prev}
-              className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-background"
+              className="absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-background"
               aria-label="Previous image"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={next}
-              className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-background"
+              className="absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-background"
               aria-label="Next image"
             >
               <ChevronRight size={20} />
@@ -69,7 +80,11 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
       </div>
 
       {images.length > 1 && (
-        <div className="flex gap-3 overflow-x-auto pb-2" role="tablist" aria-label="Gallery thumbnails">
+        <div
+          className="flex gap-3 overflow-x-auto pb-2"
+          role="tablist"
+          aria-label="Gallery thumbnails"
+        >
           {images.map((image, index) => (
             <button
               key={image}
@@ -78,7 +93,7 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
               aria-label={`View screenshot ${index + 1}`}
               onClick={() => setCurrent(index)}
               className={cn(
-                "relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border-2 transition-all duration-200",
+                "relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border-2 bg-surface-elevated transition-all duration-200",
                 index === current
                   ? "border-accent shadow-lg shadow-accent/20"
                   : "border-border opacity-60 hover:opacity-100"
@@ -88,6 +103,7 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
                 src={image}
                 alt=""
                 fill
+                objectFit="contain"
                 sizes="96px"
               />
             </button>

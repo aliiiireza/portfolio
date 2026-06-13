@@ -150,7 +150,7 @@ export const projects: Project[] = [
       "/images/projects/alobit-1.png",
       "/images/projects/alobit-2.png",
       "/images/projects/alobit-3.png",
-      "/images/projects/alobit-4.png",
+      // "/images/projects/alobit-4.png",
       "/images/projects/alobit-5.png",
     ],
     techStack: [

@@ -11,6 +11,7 @@ interface ImageWithSkeletonProps {
   width?: number;
   height?: number;
   className?: string;
+  objectFit?: "cover" | "contain";
   priority?: boolean;
   sizes?: string;
 }
@@ -22,6 +23,7 @@ export function ImageWithSkeleton({
   width,
   height,
   className,
+  objectFit = "cover",
   priority = false,
   sizes,
 }: ImageWithSkeletonProps) {
@@ -42,7 +44,8 @@ export function ImageWithSkeleton({
         width={!fill ? width : undefined}
         height={!fill ? height : undefined}
         className={cn(
-          "object-cover transition-opacity duration-500",
+          objectFit === "contain" ? "object-contain" : "object-cover",
+          "transition-opacity duration-500",
           loaded ? "opacity-100" : "opacity-0",
           className
         )}
